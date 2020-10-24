@@ -1,27 +1,34 @@
 package de.feu.studenten.domain;
 
+import java.util.HashMap;
 import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Set;
+import java.util.Map;
 
-public class StudentRepository {
-	private List<Student> students = new LinkedList<>();
+import de.feu.studenten.Repository;
+
+public class StudentRepository implements Repository {
+	private Map<String, Student> students = new HashMap<>();
 
 	public void addStudent(Student student) {
-		students.add(student);
+		students.put(student.getMatrikelnummer(), student);
+	}
+	
+	public Student getStudent(String matrikelnummer) {
+		return students.get(matrikelnummer);
 	}
 	
 	public Iterable<Student> getAllStudents() {
-		return new LinkedList<>(students);
+		return new HashSet<>(students.values());
 	}
 
+	@Override
 	public void showAll() {
-		for(Student student : students) {
+		for(Student student : students.values()) {
 			student.printToConsole();
 		}		
 	}
 		
+	@Override
 	public int getCount() {
 		return students.size();
 	}

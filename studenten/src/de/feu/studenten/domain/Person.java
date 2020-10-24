@@ -36,4 +36,16 @@ public abstract class Person implements ConsolePrintable, Marker {
 		System.out.println(this.toString());
 	}
 
+	public void updateData(String vorname, String nachname, LocalDate geburtsdatum) {
+		if (vorname != null) {
+			this.vorname = vorname;
+		}
+		if (nachname != null) {
+			this.nachname = nachname;
+		}
+		if (geburtsdatum != null) {
+			this.geburtsdatum = geburtsdatum;
+		}
+	}
+
 }

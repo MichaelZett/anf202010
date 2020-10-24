@@ -9,13 +9,37 @@ import java.time.LocalDate;
 public class Student extends Person {
 	private static int count = 0;
 	private String matrikelnummer;
-	
+	private StudentState state;
+
 	public Student(String vorname, String nachname, LocalDate geburtsdatum) {
 		super(vorname, nachname, geburtsdatum);
 		count++; // count = count + 1;
 		this.matrikelnummer = "00000" + count;
+		state = StudentState.INTERESSENT;
 	}
-	
+
+	public StudentState getState() {
+		return state;
+	}
+
+	public String getMatrikelnummer() {
+		return matrikelnummer;
+	}
+
+	public void immatrikulieren() {
+		state = StudentState.IMMATRIKULIERT;
+	}
+
+	public static int getCount() {
+		return count;
+	}
+
+	@Override
+	public String toString() {
+		return "Student [matrikelnummer=" + matrikelnummer + ", state=" + state + ", vorname=" + vorname + ", nachname="
+				+ nachname + ", geburtsdatum=" + geburtsdatum + "]";
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -23,7 +47,7 @@ public class Student extends Person {
 		result = prime * result + ((matrikelnummer == null) ? 0 : matrikelnummer.hashCode());
 		return result;
 	}
-	
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -40,20 +64,4 @@ public class Student extends Person {
 			return false;
 		return true;
 	}
-
-	public String getMatrikelnummer() {
-		return matrikelnummer;
-	}
-
-	public static int getCount() {
-		return count;
-	}
-
-	@Override
-	public String toString() {
-		return "Student [vorname=" + vorname + ", nachname=" + nachname 
-				+ ", matrikelnummer=" + matrikelnummer
-				+ ", geburtsdatum=" + geburtsdatum + "]";
-	}
-		
 }
